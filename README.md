@@ -37,7 +37,7 @@ public function registerBundles()
 }
 ```
 
-#####Configure the Bundle
+####Configure the Bundle
 
 The bundle allows you to configure the Rest API host and a possibly path prefix.
 Your links will be built using these values.  If they are not set, the bundle will
@@ -80,7 +80,7 @@ class UserEntity
     }
 }
 ```
-#####Output:
+####Output:
 
 ```json
 "user": {
@@ -105,16 +105,16 @@ Property | Description | Example
 `groups` | Serializer Exclusion Groups | Used the same way as JMS Serializer Groups | '{ "partial", "full" }'
 `type` | 'Absolute' or 'Embedded' | 'absolute'
 
-#####Using Params
+####Using Params
 You can have multiple tokens in the `href`.  The `params` array should be an associative array
 with keys matching the tokens in the path.  Methods listed should be methods that exist in the 
 annotated class.
 
-#####Groups
+####Groups
 Specifying `groups` allow you to control the output of the links based on 
 [Exclusion Groups](http://jmsyst.com/libs/serializer/master/reference/annotations#groups)
 
-#####Embedded vs Absolute Links
+####Embedded vs Absolute Links
 While `absolute` (default value), will allows include the API Host and optional prefix, 
 `embedded` urls live beneath another resource. Setting type to '`embedded` will allow you 
 to have links like:
