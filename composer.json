@@ -1,0 +1,33 @@
+{
+    "name":         "kmfk/hateoas-bundle",
+    "type":         "library",
+    "description":  "Symfony2 Bundle to add Hateoas compliant urls to JMS Serializer",
+    "keywords":     ["hateoas", "json", "symfony", "bundle" ],
+    "homepage":     "https://github.com/kmfk/hateoas-bundle",
+    "license":      "MIT",
+    "authors":      [
+        {
+            "name":     "Keith Kirk",
+            "email":    "kmfk00@gmail.com",
+            "role":     "developer",
+            "homepage": "https://github.com/kmfk"
+        }
+    ],
+    "support": {
+        "email": "kmfk00@gmail.com"
+    },
+    "require": {
+        "php":                                  ">=5.4.0",
+        "jms/serializer-bundle":                "dev-master",
+        "doctrine/common":                      ">2.4.0"
+    },
+    "require-dev": {
+        "symfony/symfony": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Kmfk\\Bundle\\HateoasBundle": ""
+        }
+    },
+    "target-dir": "Kmfk/Bundle/HateoasBundle"
+}

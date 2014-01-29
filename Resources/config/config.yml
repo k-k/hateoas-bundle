@@ -1,0 +1,4 @@
+#KmfkHateoasBundle Configuration Example
+kmfk_hateoas:
+    host:   http://api.example.com/
+    prefix: /api/
