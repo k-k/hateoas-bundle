@@ -1,6 +1,6 @@
 services:
     kmfk.hateoas.serialization_event_listener:
-        class: Kmfk\Bundle\EventListener\SerializationListener
+        class: Kmfk\Bundle\HateoasBundle\EventListener\SerializationListener
         arguments:
             - @request
             - @annotation_reader

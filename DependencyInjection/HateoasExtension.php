@@ -5,7 +5,9 @@ namespace Kmfk\Bundle\HateoasBundle\DependencyInjection;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
-use Hateoas\Bundle\HateoasBundle\DependencyInjection\Configuration;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\Config\FileLocator;
+use Kmfk\Bundle\HateoasBundle\DependencyInjection\Configuration;
 
 class HateoasExtension extends Extension
 {
@@ -20,10 +22,10 @@ class HateoasExtension extends Extension
         }
 
         // Lets be sure we have the correct trailing slashses
-        $config['host'] = rtrim($config['domain'], '/') . '/';
+        $config['host'] = rtrim($config['host'], '/') . '/';
 
         if (!empty($config['prefix'])) {
-            $config['prefix'] = rtrim(ltrim($config['prefix'], '/'), '/') . '/';
+            $config['prefix'] = rtrim($config['prefix'], '/') . '/';
         }
 
         $container->setParameter('kmfk.hateoas', $config);

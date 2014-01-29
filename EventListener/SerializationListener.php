@@ -27,7 +27,7 @@ class SerializationListener implements EventSubscriberInterface
     protected $links;
 
     /**
-     * The API domain, set in the configuration
+     * The API host, set in the configuration
      *
      * @var string
      */
@@ -65,7 +65,7 @@ class SerializationListener implements EventSubscriberInterface
         $this->reader   = $reader;
 
         foreach($config as $key => $value) {
-            if (property_exists($this, $key) && !empty($value) {
+            if (property_exists($this, $key) && !empty($value)) {
                 $this->{$key} = $value;
             }
         }
@@ -136,16 +136,8 @@ class SerializationListener implements EventSubscriberInterface
      */
     protected function addLinkUrl($annotation, $entity)
     {
-        $uri =  $this->domain ?: $this->request->getSchemeAndHost();
-        $uri .= $this->prefix ?: null;
-
-        if ($annotation->type == "embedded") {
-            if (!empty($this->links['self']['href'])) {
-                $uri = $this->links['self']['href'];
-            } else {
-                $uri .= str_replace($this->prefix, '', $this->request->getPathInfo());
-            }
-        }
+        $uri =  $this->host ?: $this->request->getSchemeAndHost();
+        $uri .= ltrim($this->prefix, '/') ?: null;
 
         $params = [];
         foreach($annotation->params as $key => $method) {
@@ -153,8 +145,16 @@ class SerializationListener implements EventSubscriberInterface
                 $params["{{$key}}"] = $entity->{$method}();
             }
         }
-
         $href = str_replace(array_keys($params), $params, $annotation->href);
+
+        if ($annotation->type == "embedded") {
+            if (!empty($this->links['self']['href'])) {
+                $uri = $this->links['self']['href'];
+            } else {
+                $uri .= str_replace([$this->prefix, ltrim($href, '/')], '', $this->request->getPathInfo());
+            }
+        }
+
         $this->links[$annotation->name] = ['href' => $uri . ltrim($href, '/')];
     }
 }
