@@ -46,7 +46,7 @@ default to parsing this from the current request.
 ```
 #app/config.yml
 
-kmfk_hateoas:
+hateoas:
 	host:   <http://api.example.com/>
 	prefix: </api/>
 ```
