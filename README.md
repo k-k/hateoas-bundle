@@ -1,4 +1,4 @@
-KMFK Hateoas Bundle
+Hateoas Bundle
 =======================
 
 ###Overview
@@ -6,8 +6,9 @@ KMFK Hateoas Bundle
 The Hateoas Bundle works with JMS Serializer to allow you to easily add Hateoas compliant
 resource urls to the JSON output of your REST Api.
 
-Unlink other bundles, this works directly with JMS Serializer and does not require you
-to serialize your data through another class or method.
+There are other similar bundles, but they seemed heavy for my needs. This bundle was designed to work seamlessly with [JMS Serializer](https://github.com/schmittjoh/JMSSerializerBundle), with out needing to abstract or obsfucate the serialization of your data.
+
+Currently this bundle only provides Annotations for Resource Linking in your Serialized response.
 
 ###Hateoas Bundle Installation
 
@@ -17,7 +18,7 @@ The best method of installation is through the use of composer.
 
 ```json
 "require": {
-    "kmfk/hateoas-bundle": "dev-master",
+    "kmfk/hateoas-bundle": "~0.1",
 }
 ```
 
@@ -47,8 +48,8 @@ default to parsing this from the current request.
 #app/config.yml
 
 hateoas:
-	host:   <http://api.example.com/>
-	prefix: </api/>
+	host:   http://api.example.com/
+	prefix: /api/
 ```
 
 ###Annotations
