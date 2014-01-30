@@ -8,7 +8,7 @@ compliant resource urls to the JSON output of your REST Api.
 
 There are other similar bundles, but they seemed heavy for my needs. This bundle
 was designed to work seamlessly with [JMS Serializer](https://github.com/schmittjoh/JMSSerializerBundle),
-with out needing to abstract or obsfucate the serialization of your data.
+with out needing to abstract or obfuscate the serialization of your data.
 
 Currently this bundle only provides Annotations for Resource Linking in your
 Serialized response.
