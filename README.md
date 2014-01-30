@@ -87,10 +87,7 @@ class UserEntity
 ####Output:
 
 ```json
-"user": {
-    "id": 1,
-    "name": "Keith Kirk"
-    },
+{
     "_links": {
         "self": {
             "href": "http://api.example.com/api/user/1/"
@@ -124,9 +121,11 @@ While `absolute` (default value), will allows include the API Host and optional 
 to have links like:
 
 ```json
-"_links": {
-    "self": {
-        "href": "http://api.example.com/api/user/1/email/1/"
+{
+    "_links": {
+        "self": {
+            "href": "http://api.example.com/api/user/1/email/1/"
+        }
     }
 }
 ```
