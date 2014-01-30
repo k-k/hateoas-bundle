@@ -1,13 +1,17 @@
-KMFK Hateoas Bundle
+Hateoas Bundle
 =======================
 
 ###Overview
 
-The Hateoas Bundle works with JMS Serializer to allow you to easily add Hateoas compliant
-resource urls to the JSON output of your REST Api.
+The Hateoas Bundle works with JMS Serializer to allow you to easily add Hateoas 
+compliant resource urls to the JSON output of your REST Api.
 
-Unlink other bundles, this works directly with JMS Serializer and does not require you
-to serialize your data through another class or method.
+There are other similar bundles, but they seemed heavy for my needs. This bundle
+was designed to work seamlessly with [JMS Serializer](https://github.com/schmittjoh/JMSSerializerBundle),
+with out needing to abstract or obsfucate the serialization of your data.
+
+Currently this bundle only provides Annotations for Resource Linking in your
+Serialized response.
 
 ###Hateoas Bundle Installation
 
@@ -17,7 +21,7 @@ The best method of installation is through the use of composer.
 
 ```json
 "require": {
-    "kmfk/hateoas-bundle": "dev-master",
+    "kmfk/hateoas-bundle": "~0.1",
 }
 ```
 
@@ -39,7 +43,7 @@ public function registerBundles()
 
 ####Configure the Bundle
 
-The bundle allows you to configure the Rest API host and a possibly path prefix.
+The bundle allows you to configure the Rest API host and an optional Path prefix.
 Your links will be built using these values.  If they are not set, the bundle will
 default to parsing this from the current request.
 
@@ -47,8 +51,8 @@ default to parsing this from the current request.
 #app/config.yml
 
 hateoas:
-	host:   <http://api.example.com/>
-	prefix: </api/>
+	host:   http://api.example.com/
+	prefix: /api/
 ```
 
 ###Annotations
@@ -83,10 +87,7 @@ class UserEntity
 ####Output:
 
 ```json
-"user": {
-    "id": 1,
-    "name": "Keith Kirk"
-    },
+{
     "_links": {
         "self": {
             "href": "http://api.example.com/api/user/1/"
@@ -99,11 +100,11 @@ class UserEntity
 
 Property | Description | Example
 -------- | ----------- | -------
-`name` | The property name inside the 'links' attribute | 'user'
-`href` | The relative (path) url of the resource, including url tokens | '/user/{id}/'
-`params` | An associative array of token names with their corresponding getter methods | '{ "id" = "getId" }'
-`groups` | Serializer Exclusion Groups | Used the same way as JMS Serializer Groups | '{ "partial", "full" }'
-`type` | 'Absolute' or 'Embedded' | 'absolute'
+`name` | The property name inside the 'links' attribute | `user`
+`href` | The relative (path) url of the resource, including url tokens | `/user/{id}/`
+`params` | An associative array of token names with their corresponding getter methods | `{ "id" = "getId" }`
+`groups` | Serializer Groups, Used the same way as JMS Serializer Groups | `{ "partial", "full" }`
+`type` | 'Absolute' or 'Embedded' | `absolute`
 
 ####Using Params
 You can have multiple tokens in the `href`.  The `params` array should be an associative array
@@ -120,9 +121,11 @@ While `absolute` (default value), will allows include the API Host and optional 
 to have links like:
 
 ```json
-"_links": {
-    "self": {
-        "href": "http://api.example.com/api/user/1/email/1/"
+{
+    "_links": {
+        "self": {
+            "href": "http://api.example.com/api/user/1/email/1/"
+        }
     }
 }
 ```
