@@ -105,7 +105,7 @@ class SerializationListener implements EventSubscriberInterface
         $annotation = $this->reader->getClassAnnotation($reflClass, $this->annotationClass);
         if (null !== $annotation) {
             // Check to see if the hateoas groups match the exclusion groups
-            if (sizeof(array_intersect($annotation->groups, $groups))) {
+            if (empty($annotation->groups) || sizeof(array_intersect($annotation->groups, $groups))) {
                 $this->addLinkUrl($annotation, $event->getObject());
             }
         }
@@ -118,7 +118,7 @@ class SerializationListener implements EventSubscriberInterface
             }
 
             // Check to see if the hateoas groups match the exclusion groups
-            if (sizeof(array_intersect($annotation->groups, $groups))) {
+            if (empty($annotation->groups) || sizeof(array_intersect($annotation->groups, $groups))) {
                 $this->addLinkUrl($annotation, $event->getObject());
             }
         }
