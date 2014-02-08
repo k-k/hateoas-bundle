@@ -160,6 +160,12 @@ class SerializationListener implements EventSubscriberInterface
             }
         }
 
-        $this->links[$annotation->name] = ['href' => $uri . ltrim($href, '/')];
+        $this->links[$annotation->name] = [
+            'href' => preg_replace(
+                '/([^:])(\/{2,})/',
+                '$1/',
+                $uri . str_replace('//', '/', $href)
+            )
+        ];
     }
 }
