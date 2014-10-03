@@ -1,6 +1,11 @@
 Hateoas Bundle
 =======================
 
+While this works as a simple, drop in bundle for Symfony, you can find a much more full featured library and bundle here:
+
+ - [Hateoas](https://github.com/willdurand/Hateoas)
+ - [BazingaHateoasBundle](https://github.com/willdurand/BazingaHateoasBundle)
+
 ###Overview
 
 The Hateoas Bundle works with JMS Serializer to allow you to easily add Hateoas 
